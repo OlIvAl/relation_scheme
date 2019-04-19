@@ -1,5 +1,4 @@
 import {IItemsLevelGroup} from '../../interfaces';
-import {Relations} from '../../../../enums';
 import Dimensions from '../../Dimensions';
 
 export default
@@ -9,13 +8,13 @@ class ItemsRoleGroupHelpers {
     levelSize: number
   ): T[][] {
     return elements.reduce((
-      accumulator: Array<Array<T>>,
+      accumulator: T[][],
       element: T
-    ): Array<Array<T>> => {
+    ): T[][] => {
       const length: number = accumulator.length;
 
       if (accumulator[length - 1].length < levelSize) {
-        const lastLevel: Array<T> = accumulator[length - 1];
+        const lastLevel: T[] = accumulator[length - 1];
 
         accumulator[length - 1] = [...lastLevel, element];
 
@@ -53,10 +52,10 @@ class ItemsRoleGroupHelpers {
 
   static getHeight(itemsGroupLevels: IItemsLevelGroup[]): number {
     return itemsGroupLevels.reduce<number>(
-        (sum: number, itemsLevelGroup: IItemsLevelGroup): number =>
-          (sum + itemsLevelGroup.height),
-        0
-      );
+      (sum: number, itemsLevelGroup: IItemsLevelGroup): number =>
+        (sum + itemsLevelGroup.height),
+      0
+    );
   }
 
   static getMinXCoord(itemsGroupLevels: IItemsLevelGroup[]): number {

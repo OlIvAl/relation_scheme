@@ -44,6 +44,10 @@ class RolesGroup implements IRolesGroup {
   }
 
   get height(): number {
+    if(!this.roles.length) {
+      return 0;
+    }
+
     return Dimensions.ROLE_HEIGHT + this.distanceFromTarget;
   }
 

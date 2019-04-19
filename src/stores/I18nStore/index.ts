@@ -15,8 +15,8 @@ export default class I18nStore implements II18nStore {
     this.locale = i18next.language;
 
     reaction(
-      () => this.locale,
-      (curlocale: string) => {
+      (): string => this.locale,
+      (curlocale: string): void => {
         this.i18next.changeLanguage(curlocale);
       }
     );
@@ -25,7 +25,7 @@ export default class I18nStore implements II18nStore {
   @action.bound
   t(key: string): string{
     return this.i18next.t(key)
-  };
+  }
 
   @action.bound
   changeLanguage(newLang: string): void {

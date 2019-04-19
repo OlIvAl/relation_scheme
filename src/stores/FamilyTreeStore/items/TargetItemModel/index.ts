@@ -12,7 +12,10 @@ class TargetItemModel extends ElementModel implements ITargetItemModel {
 
   readonly id: number;
   readonly regNo: string;
+  readonly url: string;
   readonly type: Types;
+
+  favorites: boolean = false;
 
   readonly itemBubbleInfo: IItemExtraInfo | null = null;
 
@@ -36,12 +39,15 @@ class TargetItemModel extends ElementModel implements ITargetItemModel {
     return this.centralY + this.height / 2;
   }
 
-  private _timeout: number = 0;
+  private _bubbleTimeout: number = 0;
+  private _hoverTimeout: number = 0;
 
   constructor(
     store: IFamilyTreeStore,
     id: number,
     regNo: string = '',
+    url: string,
+    favorites: boolean = false,
     type: Types,
     title: string,
     bubbleInfo: IItemExtraInfo | null
@@ -53,6 +59,9 @@ class TargetItemModel extends ElementModel implements ITargetItemModel {
     this.id = id;
     this.regNo = regNo;
     this.type = type;
+
+    this.url = url;
+    this.favorites = favorites;
 
     this.itemBubbleInfo = bubbleInfo;
 
@@ -69,10 +78,9 @@ class TargetItemModel extends ElementModel implements ITargetItemModel {
 
   @action.bound
   setItemBubble(): void {
-    // @ts-ignore
-    this._timeout = setTimeout(() => {
+    this._bubbleTimeout = window.setTimeout((): void => {
       runInAction(
-        () => {
+        (): void => {
           if(this.itemBubbleInfo) {
             this.store.itemBubble = new ItemBubble(
               this,
@@ -87,25 +95,49 @@ class TargetItemModel extends ElementModel implements ITargetItemModel {
           }
         }
       );
-    }, 300);
+    }, Dimensions.TIMER);
   }
 
   @action.bound
   unSetItemBubble(): void {
-    if(this._timeout) {
-      clearTimeout(this._timeout);
+    if(this._bubbleTimeout) {
+      clearTimeout(this._bubbleTimeout);
 
-      this._timeout = 0;
+      this._bubbleTimeout = 0;
     }
 
     this.store.itemBubble = null;
   }
 
-  @action.bound setHover(): void {
-    this.hover = true;
+  @action.bound
+  setHover(): void {
+    this._hoverTimeout = window.setTimeout((): void => {
+      runInAction(
+        (): void => {
+          this.hover = true;
+        }
+      );
+    }, Dimensions.TIMER);
   }
 
-  @action.bound setUnHover(): void {
+  @action.bound
+  setUnHover(): void {
+    if(this._hoverTimeout) {
+      clearTimeout(this._hoverTimeout);
+
+      this._hoverTimeout = 0;
+    }
+
     this.hover = false;
+  }
+
+  @action.bound
+  redirectToInfoPage(): void {
+    location.href = location.origin + this.url;
+  }
+
+  @action.bound
+  triggerFavorite(): void {
+    this.favorites = !this.favorites;
   }
 }

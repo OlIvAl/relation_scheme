@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx';
+import {action} from 'mobx';
 
 import {
   IItemExtraInfo,
@@ -46,6 +46,8 @@ class ItemModel extends TargetItemModel implements IItemModel {
     itemsLevelGroup: IItemsLevelGroup,
     id: number,
     regNo: string,
+    url: string,
+    favorites: boolean = false,
     type: Types,
     title: string,
     bubbleInfo: IItemExtraInfo | null,
@@ -53,7 +55,7 @@ class ItemModel extends TargetItemModel implements IItemModel {
     relationInfoObj: any,
     indexInLevel: number
   ) {
-    super(itemsLevelGroup.itemsRoleGroup.itemsGroup.store, id, regNo, type, title, bubbleInfo);
+    super(itemsLevelGroup.itemsRoleGroup.itemsGroup.store, id, regNo, url, favorites, type, title, bubbleInfo);
 
     this.itemsLevelGroup = itemsLevelGroup;
     this.itemsRoleGroup = this.itemsLevelGroup.itemsRoleGroup;

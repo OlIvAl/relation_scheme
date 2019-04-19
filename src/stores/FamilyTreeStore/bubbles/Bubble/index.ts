@@ -1,6 +1,4 @@
-import {IBubble, IItemModel, ISvgRootModel, ITargetItemModel} from '../../interfaces';
-import ElementHelpers from '../../ElementModel/Helpers';
-import Dimensions from '../../Dimensions';
+import {IBubble} from '../../interfaces';
 
 export default
 abstract class Bubble implements IBubble {

@@ -1,5 +1,6 @@
-import {action, observable, reaction} from 'mobx';
+import {action, observable, reaction, computed} from 'mobx';
 import {IFamilyTreeStore, ISvgRootModel} from '../interfaces';
+import Dimensions from '../Dimensions';
 
 /**
  * Класс, представляющий холст схемы дерева
@@ -18,10 +19,22 @@ class SvgRootModel implements ISvgRootModel {
    */
   @observable svgWidth: number = 0;
   /**
-   * Длина холста схемы дерева
+   * Высота родительской (верхней) половины
    * @observable
    */
-  @observable svgHeight: number = 0;
+  @observable parentHalfHeight: number = 0;
+  /**
+   * Высота дочерней (нижней) половины
+   * @observable
+   */
+  @observable childHalfHeight: number = 0;
+  /**
+   * Длина холста схемы дерева
+   * @computed
+   */
+  @computed get svgHeight(): number {
+    return this.parentHalfHeight + this.childHalfHeight;
+  }
 
   /**
    * Верхняя позиция, относительно видимой области
@@ -43,7 +56,7 @@ class SvgRootModel implements ISvgRootModel {
   /**
    * Максимальное значение масштабирования
    */
-  maxRangeValue: number  = 1;
+  maxRangeValue: number = 1;
 
   /**
    * Минимальное значение масштабирования
@@ -67,10 +80,10 @@ class SvgRootModel implements ISvgRootModel {
     this.store = store;
 
     reaction(
-      () => this.svgWidth,
-      (svgWidth) => {
+      (): number => this.svgWidth,
+      (svgWidth): void => {
         const newSvgPositionLeft = (store.viewPort.viewPortWidth - svgWidth) / 2;
-        this.changeSvgPositionLeft(newSvgPositionLeft);
+        this.setSvgPositionLeft(newSvgPositionLeft);
       },
       {
         name: 'changeSvgWidth reaction'
@@ -78,10 +91,22 @@ class SvgRootModel implements ISvgRootModel {
     );
 
     reaction(
-      () => this.svgHeight,
-      (svgHeight) => {
-        const newSvgPositionTop = (store.viewPort.viewPortHeight - svgHeight) / 2;
-        this.changeSvgPositionTop(newSvgPositionTop);
+      (): number => this.svgHeight,
+      (svgHeight): void => {
+        let newSvgPositionTop: number;
+
+        if(svgHeight < Dimensions.VIEWPORT_HEIGHT) {
+          newSvgPositionTop = (store.viewPort.viewPortHeight - svgHeight) / 2;
+        } else if((this.parentHalfHeight + Dimensions.TARGET_ELEMENT_HEIGHT / 2 + Dimensions.INDENTS_BETWEEN_LEVELS) < Dimensions.VIEWPORT_HEIGHT / 2) {
+          newSvgPositionTop = Dimensions.INDENTS_BETWEEN_LEVELS;
+        } else if((this.childHalfHeight + Dimensions.TARGET_ELEMENT_HEIGHT / 2 + Dimensions.INDENTS_BETWEEN_LEVELS) < Dimensions.VIEWPORT_HEIGHT / 2) {
+          newSvgPositionTop = Dimensions.VIEWPORT_HEIGHT - (this.parentHalfHeight + this.childHalfHeight + Dimensions.INDENTS_BETWEEN_LEVELS);
+        } else {
+          // duplicate
+          newSvgPositionTop = (store.viewPort.viewPortHeight - svgHeight) / 2;
+        }
+
+        this.setSvgPositionTop(newSvgPositionTop);
       },
       {
         name: 'changeSvgHeight reaction'
@@ -90,25 +115,43 @@ class SvgRootModel implements ISvgRootModel {
   }
 
   /**
-   * меняет верхнюю позицию холста дерева, относительно видимой области
+   * устанавливает верхнюю позицию холста дерева, относительно видимой области
    * @param newSvgPositionTop - новое значение верхней позиции холста дерева
    * @returns {void}
    * @action
    */
   @action.bound
-  changeSvgPositionTop(newSvgPositionTop: number): void {
+  setSvgPositionTop(newSvgPositionTop: number): void {
     this.svgPositionTop = newSvgPositionTop;
   }
 
   /**
-   * меняет левую позицию холста дерева, относительно видимой области
+   * устанавливает левую позицию холста дерева, относительно видимой области
    * @param newSvgPositionLeft - новое значение левой позиции холста дерева
    * @returns {void}
    * @action
    */
   @action.bound
-  changeSvgPositionLeft(newSvgPositionLeft: number): void {
+  setSvgPositionLeft(newSvgPositionLeft: number): void {
     this.svgPositionLeft = newSvgPositionLeft;
+  }
+
+  /**
+   * меняет верхнюю позицию холста дерева, относительно видимой области на def величину
+   * @param defSvgPositionTop - def величина, на которую будет изменена верхняя позиция
+   */
+  @action.bound
+  changeSvgPositionTop(defSvgPositionTop: number): void {
+    this.svgPositionTop = this.svgPositionTop - defSvgPositionTop;
+  }
+
+  /**
+   * меняет левую позицию холста дерева, относительно видимой области на def величину
+   * @param defSvgPositionLeft - def величина, на которую будет изменена левая позиция
+   */
+  @action.bound
+  changeSvgPositionLeft(defSvgPositionLeft: number): void {
+    this.svgPositionLeft = this.svgPositionLeft - defSvgPositionLeft;
   }
 
   /**
@@ -123,14 +166,25 @@ class SvgRootModel implements ISvgRootModel {
   }
 
   /**
-   * меняет высоту холста дерева
-   * @param newSvgHeight - новое значение высоты холста дерева
+   * меняет высоту родительской (верхней) половины
+   * @param newParentHalfHeight - новое значение высоты родительской (верхней) половины дерева
    * @returns {void}
    * @action
    */
   @action.bound
-  changeSvgHeight(newSvgHeight: number): void {
-    this.svgHeight = newSvgHeight;
+  changeParentHalfHeight(newParentHalfHeight: number): void {
+    this.parentHalfHeight = newParentHalfHeight;
+  }
+
+  /**
+   * меняет высоту дочерней (нижней) половины
+   * @param newChildHalfHeight - новое значение высоты дочерней (нижней) половины дерева
+   * @returns {void}
+   * @action
+   */
+  @action.bound
+  changeChildHalfHeight(newChildHalfHeight: number): void {
+    this.childHalfHeight = newChildHalfHeight;
   }
 
   /**

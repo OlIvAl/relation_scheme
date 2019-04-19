@@ -1,31 +1,22 @@
 import * as React from 'react';
 import {IArrow} from '../../../stores/FamilyTreeStore/interfaces';
+import Dimensions from '../../../stores/FamilyTreeStore/Dimensions';
 
-export interface IArrowProps extends Pick<IArrow, 'd'>{
+export interface IArrowProps extends Pick<IArrow, 'd'> {
   stroke: string;
   strokeWidth?: number;
-  onMouseEnter?: (e: React.MouseEvent) => void;
-  onMouseLeave?: () => void;
-}
-
-function defaultHandler() {
-  return undefined;
 }
 
 const Arrow: React.FC<IArrowProps> = ({
   d,
   stroke,
-  strokeWidth = 2,
-  onMouseEnter = defaultHandler,
-  onMouseLeave = defaultHandler,
+  strokeWidth = Dimensions.ARROW_STROKE_WIDTH,
 }): JSX.Element => (
   <path
     stroke={stroke}
     d={`${d} l0 -0.1 l 3 -5l-3 5l-3 -5`}
     fill='none'
     strokeWidth={strokeWidth}
-    onMouseEnter={onMouseEnter}
-    onMouseOut={onMouseLeave}
   />
 );
 

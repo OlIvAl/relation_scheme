@@ -3,10 +3,11 @@ class Dimensions {
   static VIEWPORT_WIDTH: number = 900;
   static VIEWPORT_HEIGHT: number = 750;
 
-  static ELEMENT_BLOCK_PADDING: number = 10;
-  static ELEMENT_FONT_SIZE: number = 16;
+  static TARGET_ELEMENT_STROKE_WIDTH: number = 5;
   static TARGET_ELEMENT_HEIGHT: number = 80;
   static ELEMENT_HEIGHT: number = 70;
+  static ELEMENT_BLOCK_PADDING: number = 10;
+  static ELEMENT_FONT_SIZE: number = 16;
   static ROLE_HEIGHT: number = 30;
 
   static INDENTS_BETWEEN_ELEMENTS: number = 50;
@@ -23,4 +24,12 @@ class Dimensions {
 
   static BUBBLE_RIGHT_LEFT_PADDING: number = 35;
   static BUBBLE_TOP_BOTTOM_PADDING: number = 30;
+
+  static ARROW_STROKE_WIDTH: number = 2;
+  static ARROW_STRONG_STROKE_WIDTH: number = 4;
+  static ARROW_TRACK_STROKE_WIDTH: number = 4;
+
+  static ACTION_BUTTON_SIZE: number = 25;
+
+  static TIMER: number = 300;
 }

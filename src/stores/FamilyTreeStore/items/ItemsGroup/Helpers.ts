@@ -8,10 +8,10 @@ class ItemsGroupHelpers {
     uniqueRoles: IRoleModel[]
   ): IResponseItemContent[][] {
     return uniqueRoles.map(({roleId}: IRoleModel): IResponseItemContent[] => (
-        responseItems.filter(({roles}: IResponseItemContent): boolean => (
-            Number(roleId) === Math.min(...Object.keys(roles).map((key) => Number(key)))
-          ))
+      responseItems.filter(({roles}: IResponseItemContent): boolean => (
+        Number(roleId) === Math.min(...Object.keys(roles).map((key): number => Number(key)))
       ))
+    ))
       .filter((arr): boolean => !!arr.length);
   }
 

@@ -1,4 +1,4 @@
-import {IItemModel, IRoleModel} from '../../interfaces';
+import {IRoleModel} from '../../interfaces';
 import Dimensions from '../../Dimensions';
 
 export default

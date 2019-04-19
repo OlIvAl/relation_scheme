@@ -6,15 +6,15 @@ interface IProps extends Pick<IItemArrow, 'd' | 'roleId'> {
 
 }
 
-const theme: any = window['theme'];
+const {roles}: ITheme = window['theme'];
 
 const RoleArrow: React.FC<IProps> = ({
   d,
   roleId
-}) => (
+}): JSX.Element => (
   <Arrow
     d={d}
-    stroke={theme.roles![roleId]}
+    stroke={roles[roleId]}
   />
 );
 

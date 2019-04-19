@@ -12,7 +12,7 @@ interface IProps extends Pick<IElementModel, 'width' | 'height' | 'x' | 'y'> {
   children: React.ReactNode;
 }
 
-function defaultHandler() {
+function defaultHandler(): void {
   return undefined;
 }
 

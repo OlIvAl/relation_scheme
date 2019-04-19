@@ -1,4 +1,5 @@
 import {IItemsGroup, IResponseItemContent, IResponseRoleContent, IRolesGroup, ITargetItemModel} from './interfaces';
+import Dimensions from './Dimensions';
 
 export default class FamilyTreeHelpers {
   static getUniqueRolesFromElements(
@@ -8,23 +9,22 @@ export default class FamilyTreeHelpers {
     return responseItemContentArr
       // извлекаем массивы roleId из каждого элемента
       .map(({roles}: IResponseItemContent): number[] =>
-        // @ts-ignore
-        Object.keys(roles).map((role) => Number(role))
+        Object.keys(roles).map((role): number => Number(role))
       )
       // массивы roleId объединяются в единый массив
       .reduce<number[]>((
-          accumulator: number[],
-          roles: number[]
-        ): number[] => ([
-          ...accumulator,
-          ...roles
-        ]), []
+        accumulator: number[],
+        roles: number[]
+      ): number[] => ([
+        ...accumulator,
+        ...roles
+      ]), []
       )
       // фильтруются уникальные id
       .filter((
         value: number,
         index: number,
-        self: Array<number>
+        self: number[]
       ): boolean => (
         self.indexOf(value) === index
       ))
@@ -34,7 +34,7 @@ export default class FamilyTreeHelpers {
           (Number(role) == Number(roleId))
         ) as IResponseRoleContent
       ))
-      .filter((item) => !!item)
+      .filter((item): boolean => !!item)
       // сортировка по возрастанию
       .sort((
         a: IResponseRoleContent,
@@ -69,20 +69,23 @@ export default class FamilyTreeHelpers {
     ) * 2;
   }
 
-  static getSvgHeight(
+  static getParentHalfHeight(
+    targetItem: ITargetItemModel,
+    parentRolesGroup: IRolesGroup,
+    parentItemsGroup: IItemsGroup
+  ): number {
+    return targetItem.height / 2
+      + ((parentRolesGroup.height + parentItemsGroup.height)
+        || Math.ceil(Dimensions.TARGET_ELEMENT_STROKE_WIDTH / 2));
+  }
+
+  static getChildHalfHeight(
     targetItem: ITargetItemModel,
     childRolesGroup: IRolesGroup,
-    childItemsGroup: IItemsGroup,
-    parentRolesGroup: IRolesGroup,
-    parentItemsGroup: IItemsGroup,
+    childItemsGroup: IItemsGroup
   ): number {
-    return Math.max(
-      targetItem.height / 2 +
-        childRolesGroup.height +
-        childItemsGroup.height,
-      targetItem.height / 2 +
-        parentRolesGroup.height +
-        parentItemsGroup.height
-    ) * 2;
+    return targetItem.height / 2
+      + ((childRolesGroup.height + childItemsGroup.height)
+        || Math.ceil(Dimensions.TARGET_ELEMENT_STROKE_WIDTH / 2));
   }
 }

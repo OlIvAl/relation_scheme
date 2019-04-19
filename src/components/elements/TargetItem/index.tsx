@@ -1,45 +1,34 @@
 import * as React from 'react';
 import {ITargetItemModel} from '../../../stores/FamilyTreeStore/interfaces';
 import Item from '../Item';
+import {observer} from 'mobx-react-lite';
 
-function defaultHandler() {
+function defaultHandler(): void {
   return undefined;
 }
 
-interface IProps extends Pick<ITargetItemModel, 'id' | 'regNo' | 'title' | 'itemBubbleInfo' | 'width' | 'height' | 'type' | 'setItemBubble' | 'unSetItemBubble' | 'hover' | 'setHover' | 'setUnHover'> {
-
+interface IProps {
+  targetItemProps: Pick<ITargetItemModel, 'id' | 'regNo' | 'title' | 'itemBubbleInfo' | 'width' | 'height' | 'type' | 'setItemBubble' | 'unSetItemBubble' | 'hover' | 'setHover' | 'setUnHover' | 'redirectToInfoPage' | 'triggerFavorite'>;
 }
 
 const TargetItem: React.FC<IProps> = ({
-  id,
-  regNo,
-  title,
-  width,
-  height,
-  type,
-  hover,
-  setHover,
-  setUnHover,
-  setItemBubble,
-  unSetItemBubble
-}): JSX.Element => (
-  <Item
-    id={id}
-    width={width}
-    height={height}
-    x={-width/2}
-    y={-height/2}
-    type={type}
-    regNo={regNo}
-    title={title}
-    hover={hover}
-    target={true}
-    getNewFT={defaultHandler}
-    setHover={setHover}
-    setUnHover={setUnHover}
-    setItemBubble={setItemBubble}
-    unSetItemBubble={unSetItemBubble}
-  />
-);
+  targetItemProps
+}): JSX.Element => {
+  return (
+    <Item
+      itemProps={{
+        ...targetItemProps,
+        setItemBubble: targetItemProps.setItemBubble,
+        unSetItemBubble: targetItemProps.unSetItemBubble,
+        setHover: targetItemProps.setHover,
+        setUnHover: targetItemProps.setUnHover,
+        x: -targetItemProps.width/2,
+        y: -targetItemProps.height/2,
+        getNewFT: defaultHandler
+      }}
+      target={true}
+    />
+  );
+};
 
-export default React.memo<IProps>(TargetItem);
+export default React.memo<IProps>(observer(TargetItem));

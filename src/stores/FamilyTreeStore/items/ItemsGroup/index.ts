@@ -28,18 +28,18 @@ class ItemsGroup implements IItemsGroup {
   get distanceFromRolesGroup(): number {
     return (Math.floor((this.rolesGroup.roles.length) / 2) + 1) *
       Dimensions.INDENTS_BETWEEN_LEVELS / 2;
-  };
+  }
 
   get distanceFromTargetCenter(): number {
     return this.distanceFromRolesGroup +
       Dimensions.ROLE_HEIGHT +
       this.rolesGroup.distanceFromTargetCenter;
-  };
+  }
 
   get middleDistanceBetweenElements(): number {
     return (this.rolesGroup.roles.length + 1) *
       (Dimensions.INDENTS_BETWEEN_ELEMENTS / 2);
-  };
+  }
 
   get minXCoord(): number {
     const roleMinXCoordArr: number[] = this.itemsRoleGroups
@@ -56,6 +56,10 @@ class ItemsGroup implements IItemsGroup {
   }
 
   get height(): number {
+    if(!this.itemsRoleGroups.length) {
+      return 0;
+    }
+
     return this.itemsRoleGroups
       .reduce<number>(
         (sum: number, itemsRoleGroups: IItemsRoleGroup): number =>
@@ -88,8 +92,8 @@ class ItemsGroup implements IItemsGroup {
         accum.concat(itemsRoleGroup.itemsGroupLevels)
       ), [])
       .map(({items}: IItemsLevelGroup): IItemModel[] => ([
-          ...items.slice(0, Math.ceil(items.length / 2)),
-          ...items.slice(Math.ceil(items.length / 2)).reverse()
+        ...items.slice(0, Math.ceil(items.length / 2)),
+        ...items.slice(Math.ceil(items.length / 2)).reverse()
       ]))
       .reduce((
         accum: IItemModel[],
@@ -103,7 +107,7 @@ class ItemsGroup implements IItemsGroup {
       ): IItemArrow[] => (
         accum.concat(item.arrows)
       ), []
-    );
+      );
 
     return this.rolesGroup.roles.map(({roleId}: IRoleModel): IItemArrow[] => (
       arrows.filter(({roleItem}: IItemArrow): boolean => (
@@ -147,17 +151,17 @@ class ItemsGroup implements IItemsGroup {
 
         return itemsRoleGroup;
       });
-
-    // reaction() hoverItem -> notHoverButOtherHover
   }
 
   @action.bound
   setHoverArrow(newHoverArrow: IItemArrow): void {
+    console.log('setHoverArrow');
     this.hoverArrow = newHoverArrow;
   }
 
   @action.bound
   unSetHoverArrow(): void {
+    console.log('unSetHoverArrow');
     this.hoverArrow = null;
   }
 }

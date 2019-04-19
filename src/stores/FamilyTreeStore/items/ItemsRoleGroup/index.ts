@@ -1,5 +1,4 @@
 import {
-  IItemModel,
   IItemsGroup,
   IItemsLevelGroup,
   IItemsRoleGroup,
@@ -23,7 +22,7 @@ class ItemsRoleGroup implements IItemsRoleGroup {
 
   get leftShift(): number {
     return ItemsRoleGroupHelpers.getLeftShift(this.roleItem.roleIndex);
-  };
+  }
 
   get minXCoord(): number {
     return ItemsRoleGroupHelpers.getMinXCoord(this.itemsGroupLevels);
@@ -35,7 +34,7 @@ class ItemsRoleGroup implements IItemsRoleGroup {
 
   get height(): number {
     return ItemsRoleGroupHelpers.getHeight(this.itemsGroupLevels);
-  };
+  }
 
   constructor(
     itemsGroup: IItemsGroup,

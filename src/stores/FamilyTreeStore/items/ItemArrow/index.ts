@@ -3,6 +3,7 @@ import {IRelationInfo, IItemArrow, IItemModel, IRoleModel,} from '../../interfac
 import ItemArrowHelpers from './Helpers';
 import {action, computed, runInAction} from 'mobx';
 import ArrowBubble from '../../bubbles/ArrowBubble';
+import Dimensions from '../../Dimensions';
 
 export default
 class ItemArrow extends Arrow implements IItemArrow {
@@ -71,13 +72,12 @@ class ItemArrow extends Arrow implements IItemArrow {
 
   strong: boolean = false;
 
-  @computed get notHover(): boolean {
-    const hoverArrow: IItemArrow | null = this.item.itemsGroup.hoverArrow;
-
-    return !!(hoverArrow && (hoverArrow.d !== this.d));
+  @computed get hoverArrowExist(): boolean {
+    return !!this.item.itemsGroup.hoverArrow;
   }
 
-  private _timeout: number = 0;
+  private _bubbleTimeout: number = 0;
+  private _hoverTimeout: number = 0;
 
   constructor(
     item: IItemModel,
@@ -95,10 +95,9 @@ class ItemArrow extends Arrow implements IItemArrow {
 
   @action.bound
   setArrowBubble({pageX, pageY}: React.MouseEvent): void {
-    // @ts-ignore
-    this._timeout = setTimeout(() => {
+    this._bubbleTimeout = window.setTimeout((): void => {
       runInAction(
-        () => {
+        (): void => {
           if(this.relationInfo) {
             this.item.store.arrowBubble = new ArrowBubble(
               this,
@@ -114,17 +113,40 @@ class ItemArrow extends Arrow implements IItemArrow {
           }
         }
       );
-    }, 300);
+    }, Dimensions.TIMER);
   }
 
   @action.bound
   unSetArrowBubble(): void {
-    if(this._timeout) {
-      clearTimeout(this._timeout);
+    if(this._bubbleTimeout) {
+      clearTimeout(this._bubbleTimeout);
 
-      this._timeout = 0;
+      this._bubbleTimeout = 0;
     }
 
     this.item.store.arrowBubble = null;
+  }
+
+  @action.bound
+  setHover(): void {
+    this._hoverTimeout = window.setTimeout((): void => {
+      runInAction(
+        (): void => {
+          this.item.itemsGroup.setHoverArrow(this);
+        }
+      );
+    }, Dimensions.TIMER);
+    //this.item.itemsGroup.setHoverArrow(this);
+  }
+
+  @action.bound
+  unSetHover(): void {
+    if(this._hoverTimeout) {
+      clearTimeout(this._hoverTimeout);
+
+      this._hoverTimeout = 0;
+    }
+
+    this.item.itemsGroup.unSetHoverArrow();
   }
 }

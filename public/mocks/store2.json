@@ -1,0 +1,60 @@
+{
+  "scheme": {
+    "alert": {
+      "title": "BUSINESS PLUS, SIA",
+      "body": "t346354634563456345634",
+      "close": "закрыть"
+    },
+
+    "alert": {
+      "title": "BUSINESS PLUS, SIA",
+      "body": "t346354634563456345634"
+    },
+
+    "alert": {
+      "title": "Сообщение",
+      "body": "Кончились деньги",
+      "button": {"title": "Купить", "refresh": "?id=2334048&buy=1" },
+      "button": {"title": "Пополнить кошелёк", "link": "/refund/" }
+    },
+
+    "target": {
+      "type": "0",
+      "id": "2334048",
+      "regNo": "40203014170",
+      "title": "BUSINESS PLUS, SIA",
+      "address": "Dzirnavu 92 - 3, Rīga LV-1050",
+      "regDate": "22.08.2016",
+      "legalform": "SIA",
+      "capCur": "EUR",
+      "capSum": "2800.00",
+      "capFullyPaid": "1",
+      "url": "/company/40203014170/BUSINESS_PLUS_SIA/",
+      "ico": ["ico1","ico2","ico3","ico4"]
+    },
+    "parents": [
+      {
+        "id": "1277037",
+        "regNo": "230371-10118",
+        "title": "Mihails Kočņevs",
+        "type": "1",
+        "roles": {
+          "0": { "startDate": "26.08.2016", "partCur": "EUR", "partSum": "2800.00", "percent": "100.00", "holding": "1" },
+          "7": { "startDate": "02.01.2017", "position": "likvidators", "holding": "1" }
+        },
+        "ico": ["ico1","ico2","ico3","ico4"],
+        "ico": [{"btn1": "js3242342"}, {"btn2": "class58"}]
+      }
+    ]
+  },
+  "roles": [
+    {
+      "role": "1",
+      "title": "Dalībnieks"
+    },
+    {
+      "role": "7",
+      "title": "Liquidator"
+    }
+  ]
+}

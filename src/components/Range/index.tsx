@@ -1,10 +1,9 @@
 import * as React from 'react';
+import {IRangeData} from '../../interfaces';
+import useRangeInput from './hooks';
 
-interface RangeProps {
-  minRangeValue: number;
-  maxRangeValue: number;
-  scaleCoeff: number;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface IRangeProps extends Pick<IRangeData, 'minRangeValue' | 'maxRangeValue'> {
+  onChange: (val: number) => void;
 }
 
 const style: React.CSSProperties = {
@@ -18,21 +17,26 @@ const style: React.CSSProperties = {
   zIndex: 1
 };
 
-const Range: React.FC<RangeProps> = ({
+const Range: React.FC<IRangeProps> = ({
   minRangeValue,
   maxRangeValue,
-  scaleCoeff,
   onChange
-}): JSX.Element => (
-  <input
-    type="range"
-    min={minRangeValue}
-    max={maxRangeValue}
-    step={(maxRangeValue - minRangeValue) / 10}
-    value={scaleCoeff}
-    onChange={onChange}
-    style={style}
-  />
-);
+}): JSX.Element => {
+  const [stateScaleCoeff, onRangeInputChange] = useRangeInput(onChange);
 
-export default Range;
+  const step: number = (maxRangeValue - minRangeValue) / 10;
+
+  return (
+    <input
+      type="range"
+      min={minRangeValue}
+      max={maxRangeValue}
+      step={step}
+      value={stateScaleCoeff}
+      onChange={onRangeInputChange}
+      style={style}
+    />
+  )
+};
+
+export default React.memo<IRangeProps>(Range);

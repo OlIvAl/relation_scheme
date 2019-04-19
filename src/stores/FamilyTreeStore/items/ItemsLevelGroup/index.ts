@@ -19,7 +19,7 @@ class ItemsLevelGroup implements IItemsLevelGroup {
 
   get distanceFromNextLevel(): number {
     return ItemsLevelGroupHelpers.getDistanceFromNextLevel(this.items);
-  };
+  }
 
   distanceFromRoleGroupBottom: number = 0;
 
@@ -39,7 +39,7 @@ class ItemsLevelGroup implements IItemsLevelGroup {
 
   get height(): number {
     return ItemsLevelGroupHelpers.getHeight(this.distanceFromNextLevel);
-  };
+  }
 
   constructor(
     itemsRoleGroup: IItemsRoleGroup,
@@ -53,6 +53,8 @@ class ItemsLevelGroup implements IItemsLevelGroup {
       id,
       regNo,
       type,
+      url,
+      favorites,
       title,
       roles,
       legalForm = '',
@@ -84,6 +86,8 @@ class ItemsLevelGroup implements IItemsLevelGroup {
         this,
         id,
         regNo,
+        url,
+        favorites,
         type,
         title,
         itemBubbleInfo,

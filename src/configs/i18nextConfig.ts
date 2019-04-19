@@ -11,7 +11,6 @@ i18next
   // .use(LanguageDetector)
   .init({
     debug: process.env.NODE_ENV !== 'production',
-    lng: window.FT_LNG,
     resources: {
       [Locale.RU]: {
         bubble: {

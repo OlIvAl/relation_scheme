@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {IArrow} from '../../../stores/FamilyTreeStore/interfaces';
+import Dimensions from '../../../stores/FamilyTreeStore/Dimensions';
 
 interface IProps extends Pick<IArrow, 'd'> {
 
@@ -13,7 +14,7 @@ const Track: React.FC<IProps> = ({
       stroke='#fff'
       d={d}
       fill='none'
-      strokeWidth={6}
+      strokeWidth={Dimensions.ARROW_TRACK_STROKE_WIDTH}
     />
   )
 };

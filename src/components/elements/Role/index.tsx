@@ -3,26 +3,28 @@ import Element from '../Element';
 import {IRoleModel} from '../../../stores/FamilyTreeStore/interfaces';
 import Dimensions from '../../../stores/FamilyTreeStore/Dimensions';
 
-interface IProps extends Pick<IRoleModel, 'title' | 'roleId' | 'width' | 'height' | 'x' | 'y'>{
-
+interface IProps {
+  roleProps: Pick<IRoleModel, 'title' | 'roleId' | 'width' | 'height' | 'x' | 'y'>;
 }
 
-const theme: any = window['theme'];
+const {roles}: ITheme = window['theme'];
 
 const Role: React.FC<IProps> = ({
-  title,
-  roleId,
-  width,
-  height,
-  x,
-  y
-}) => (
+  roleProps: {
+    title,
+    roleId,
+    width,
+    height,
+    x,
+    y
+  }
+}): JSX.Element => (
   <Element
     width={width}
     height={height}
     x={x}
     y={y}
-    fillColor={theme.roles[roleId]}
+    fillColor={roles[roleId]}
   >
     <text
       x={x}

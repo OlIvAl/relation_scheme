@@ -21,18 +21,18 @@ class ItemBubble extends Bubble implements IItemBubble {
   get positionTop(): number {
     const {
       scaleCoeff,
-      svgHeight,
+      parentHalfHeight,
       svgPositionTop
     }: ISvgRootModel = this.item.store.svgRoot;
 
-    const defaultPositionTop: number = svgPositionTop + svgHeight / 2 - this.height + Dimensions.ITEM_BUBBLE_Y_INDENT + this.item.minYCoord * scaleCoeff;
+    const defaultPositionTop: number = svgPositionTop + parentHalfHeight - this.height + Dimensions.ITEM_BUBBLE_Y_INDENT + this.item.minYCoord * scaleCoeff;
 
     if(defaultPositionTop < 0) {
-      return svgPositionTop + svgHeight / 2 - Dimensions.ITEM_BUBBLE_Y_INDENT + this.item.maxYCoord * scaleCoeff;
+      return svgPositionTop + parentHalfHeight - Dimensions.ITEM_BUBBLE_Y_INDENT + this.item.maxYCoord * scaleCoeff;
     }
 
     return defaultPositionTop;
-  };
+  }
   get positionLeft(): number {
     const {
       scaleCoeff,
@@ -47,7 +47,7 @@ class ItemBubble extends Bubble implements IItemBubble {
     }
 
     return defaultPositionLeft;
-  };
+  }
 
   get horizontalTailPosition(): 'left' | 'right' {
     const {
@@ -67,11 +67,11 @@ class ItemBubble extends Bubble implements IItemBubble {
   get verticalTailPosition(): 'top' | 'bottom' {
     const {
       scaleCoeff,
-      svgHeight,
+      parentHalfHeight,
       svgPositionTop
     }: ISvgRootModel = this.item.store.svgRoot;
 
-    const defaultPositionTop: number = svgPositionTop + svgHeight / 2 - this.height + Dimensions.ITEM_BUBBLE_Y_INDENT + this.item.minYCoord * scaleCoeff;
+    const defaultPositionTop: number = svgPositionTop + parentHalfHeight - this.height + Dimensions.ITEM_BUBBLE_Y_INDENT + this.item.minYCoord * scaleCoeff;
 
     if(defaultPositionTop < 0) {
       return 'top';
@@ -112,8 +112,8 @@ class ItemBubble extends Bubble implements IItemBubble {
       regDate ? ElementHelpers.getTextWidth(`${t('bubble:regDate')}: ${regDate}`, `12px Arial`) : 0,
       (capSum && capCur && capFullyPaid)
         ? ElementHelpers.getTextWidth(
-        `${t('bubble:shareCapital')}: ${capCur} ${capSum}, ${capFullyPaid ? t('bubble:fullyPaid') : ''}`,
-        `12px Arial`) : 0,
+          `${t('bubble:shareCapital')}: ${capCur} ${capSum}, ${capFullyPaid ? t('bubble:fullyPaid') : ''}`,
+          `12px Arial`) : 0,
     ));
 
     // 18 - подсмотренная высота строки
@@ -123,6 +123,6 @@ class ItemBubble extends Bubble implements IItemBubble {
       address,
       regDate,
       (capSum && capCur && capFullyPaid)
-    ].filter((item) => !!item).length;
+    ].filter((item): boolean => !!item).length;
   }
 }

@@ -1,16 +1,7 @@
-import {Relations, Roles, Types} from '../../enums';
+import {Relations, Types} from '../../enums';
 import {IRootStore} from '../../interfaces';
 
 type Currency = 'EUR';
-
-export interface Theme {
-  roles: {
-    [Role: string]: string;
-  };
-  types: {
-    [Type: string]: string;
-  };
-}
 
 export interface ITooltipInfo {
   readonly legalForm: string;
@@ -21,13 +12,13 @@ export interface ITooltipInfo {
   readonly capFullyPaid: boolean;
 }
 
-export interface ElemInfo {
+export interface IElemInfo {
   readonly id: number;
   readonly regNo: string;
   readonly title: string;
 
-  readonly favorites: StringBoolean;
-  readonly url_s: string;
+  readonly favorites: boolean;
+  readonly url: string;
   readonly type: Types;
 }
 
@@ -40,7 +31,7 @@ export interface IRoleInfo {
   readonly position?: string;
 }
 
-export interface IElemContent extends ITooltipInfo, ElemInfo {}
+export interface IElemContent extends ITooltipInfo, IElemInfo {}
 
 export interface ITargetElemContent extends IElemContent {}
 
@@ -52,7 +43,7 @@ export interface IResponseRoleContent {
 export interface IResponseItemContent extends IElemContent {
   readonly tooltipInfo: Partial<TooltipInfo>;
   readonly roles: {
-    [key: number]: IRoleInfo
+    [key: number]: IRoleInfo;
   };
 }
 
@@ -107,14 +98,21 @@ export interface ISvgRootModel {
   readonly store: IFamilyTreeStore;
 
   svgWidth: number;
+  parentHalfHeight: number;
+  childHalfHeight: number;
   svgHeight: number;
   svgPositionTop: number;
   svgPositionLeft: number;
 
-  changeSvgPositionTop: (newSvgPositionTop: number) => void;
-  changeSvgPositionLeft: (newSvgPositionLeft: number) => void;
+  setSvgPositionTop: (newSvgPositionTop: number) => void;
+  setSvgPositionLeft: (newSvgPositionLeft: number) => void;
+
+  changeSvgPositionTop: (defSvgPositionTop: number) => void;
+  changeSvgPositionLeft: (defSvgPositionLeft: number) => void;
+
   changeSvgWidth: (newSvgWidth: number) => void;
-  changeSvgHeight: (newSvgHeight: number) => void;
+  changeParentHalfHeight: (newParentHalfHeight: number) => void;
+  changeChildHalfHeight: (newChildHalfHeight: number) => void;
 
   maxRangeValue: number;
   minRangeValue: number;
@@ -154,10 +152,13 @@ export interface IRoleModel extends IElementModel {
 export interface ITargetItemModel extends IElementModel {
   store: IFamilyTreeStore;
 
-  id: number;
-  regNo: string;
+  readonly id: number;
+  readonly regNo: string;
 
-  type: Types;
+  readonly type: Types;
+
+  readonly url: string;
+  favorites: boolean;
 
   hover: boolean;
 
@@ -174,6 +175,9 @@ export interface ITargetItemModel extends IElementModel {
 
   setHover: () => void;
   setUnHover: () => void;
+
+  redirectToInfoPage: () => void;
+  triggerFavorite: () => void;
 }
 
 export interface IItemModel extends ITargetItemModel {
@@ -281,7 +285,7 @@ export interface IRoleArrow extends IArrow {
   readonly roleItem: IRoleModel;
 
   roleX: number;
-  roleY : number;
+  roleY: number;
 
   shiftBottomFromRole: number;
 
@@ -290,7 +294,7 @@ export interface IRoleArrow extends IArrow {
   // shiftBottomToTarget: number;
 
   targetX: number;
-  targetY: number
+  targetY: number;
 }
 
 export interface IItemArrow extends IArrow {
@@ -300,7 +304,7 @@ export interface IItemArrow extends IArrow {
   relationInfo: IRelationInfo | null;
 
   itemX: number;
-  itemY : number;
+  itemY: number;
 
   horizontalIndentFromItemCenter: number;
   bottomShiftFromItem: number;
@@ -309,13 +313,16 @@ export interface IItemArrow extends IArrow {
   shiftFromItemGroupBottom: number;
 
   roleX: number;
-  roleY : number;
+  roleY: number;
 
   strong: boolean;
-  notHover: boolean;
+  hoverArrowExist: boolean;
 
   setArrowBubble: (e: React.MouseEvent) => void;
   unSetArrowBubble: () => void;
+
+  setHover: () => void;
+  unSetHover: () => void;
 }
 
 export interface IItemExtraInfo {
@@ -364,7 +371,7 @@ export interface IPreviousTargetLink {
   title: string;
   size: number;
 
-  previousTargetStack: IStack<ITargetItemModel>,
+  previousTargetStack: IStack<ITargetItemModel>;
   setPreviousTargetItem: (newPreviousTargetItem: ITargetItemModel) => void;
   initPreviousTarget: () => void;
 }

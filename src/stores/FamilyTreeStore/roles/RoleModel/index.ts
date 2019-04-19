@@ -1,7 +1,7 @@
 import ElementModel from '../../ElementModel';
 import {IRoleArrow, IRoleModel, IRolesGroup} from '../../interfaces';
 import Dimensions from '../../Dimensions';
-import {Relations, Types} from '../../../../enums';
+import {Relations} from '../../../../enums';
 import ElementHelpers from '../../ElementModel/Helpers';
 import RoleArrow from '../RoleArrow';
 

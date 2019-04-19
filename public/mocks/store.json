@@ -1,0 +1,353 @@
+{
+  "lang": "ru",
+  "scheme": {
+    "target": {
+      "type":"0",
+
+      "id":"1074570",
+      "title":"Boriss Sabitovs",
+      "regNo":"120458-10321",
+
+      "favorites":"0",
+      "url_s":"\/person\/1074570\/Boriss_Sabitovs\/"
+    },
+    "parents": [
+      {
+        "id":"74874",
+        "regNo":"40003255604",
+        "title":"CREDITREFORM LATVIJA, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"06.06.1995",
+        "capCur":"EUR",
+        "capSum":"142911",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"19.11.2015",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"74876",
+        "regNo":"40003255604",
+        "title":"CREDITREFORM LATVIJA, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"06.06.1995",
+        "capCur":"EUR",
+        "capSum":"142911",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"19.11.2015",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"74875",
+        "regNo":"40003255604",
+        "title":"CREDITREFORM LATVIJA, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"06.06.1995",
+        "capCur":"EUR",
+        "capSum":"142911",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"19.11.2015",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"74833374",
+        "regNo":"40003255604",
+        "title":"CREDITREFORM LATVIJA, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"06.06.1995",
+        "capCur":"EUR",
+        "capSum":"142911",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"19.11.2015",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"141735",
+        "regNo":"40003381379",
+        "title":"ECS BALTIKA, SIA",
+
+        "address":"Maskavas 201, R\u012bga LV-1019",
+        "regDate":"25.02.1998",
+        "capCur":"EUR",
+        "capSum":"4686",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"05.03.2014",
+            "partCur":"EUR",
+            "partSum":"2343.00",
+            "percent":"50.00",
+            "holding":"1"
+          },
+          "1": {
+            "startDate":"11.07.2008",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"226372",
+        "regNo":"40003807493",
+        "title":"CREFO RATING, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"03.03.2006",
+        "capCur":"EUR",
+        "capSum":"2800",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "1": {
+            "startDate":"10.03.2009",
+            "position":"valdes loceklis",
+            "holding":"1"
+          },
+          "2": {
+            "startDate":"03.11.2010",
+            "position":"valdes priek\u0161s\u0113d\u0113t\u0101js",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"439463",
+        "regNo":"40103947718",
+        "title":"CREFO BIROJS, AS",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"19.11.2015",
+        "capCur":"EUR",
+        "capSum":"35000",
+        "capFullyPaid":"1",
+        "type":"1",
+        "roles": {
+          "2": {
+            "startDate":"19.11.2015",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      }
+    ],
+    "children": [
+      {
+        "id":"74874",
+        "regNo":"40003255604",
+        "title":"CREDITREFORM LATVIJA, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"06.06.1995",
+        "capCur":"EUR",
+        "capSum":"142911",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"03.11.2010",
+            "position":"valdes loceklis",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"141735",
+        "regNo":"40003381379",
+        "title":"ECS BALTIKA, SIA",
+
+        "address":"Maskavas 201, R\u012bga LV-1019",
+        "regDate":"25.02.1998",
+        "capCur":"EUR",
+        "capSum":"4686",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"05.03.2014",
+            "partCur":"EUR",
+            "partSum":"2343.00",
+            "percent":"50.00",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"141738",
+        "regNo":"40003381379",
+        "title":"ECS BALTIKA, SIA",
+
+        "address":"Maskavas 201, R\u012bga LV-1019",
+        "regDate":"25.02.1998",
+        "capCur":"EUR",
+        "capSum":"4686",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"05.03.2014",
+            "partCur":"EUR",
+            "partSum":"2343.00",
+            "percent":"50.00",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"141739",
+        "regNo":"40003381379",
+        "title":"ECS BALTIKA, SIA",
+
+        "address":"Maskavas 201, R\u012bga LV-1019",
+        "regDate":"25.02.1998",
+        "capCur":"EUR",
+        "capSum":"4686",
+        "capFullyPaid":"1",
+
+        "type":"1",
+
+        "roles": {
+          "0": {
+            "startDate":"05.03.2014",
+            "partCur":"EUR",
+            "partSum":"2343.00",
+            "percent":"50.00",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"141730",
+        "regNo":"40003381379",
+        "title":"ECS BALTIKA, SIA",
+
+        "address":"Maskavas 201, R\u012bga LV-1019",
+        "regDate":"25.02.1998",
+        "capCur":"EUR",
+        "capSum":"4686",
+        "capFullyPaid":"1",
+
+        "type":"0",
+
+        "roles": {
+          "0": {
+            "startDate":"05.03.2014",
+            "partCur":"EUR",
+            "partSum":"2343.00",
+            "percent":"50.00",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"226372",
+        "regNo":"40003807493",
+        "title":"CREFO RATING, SIA",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"03.03.2006",
+        "capCur":"EUR",
+        "capSum":"2800",
+        "capFullyPaid":"1",
+
+        "type":"0",
+
+        "roles": {
+          "0": {
+            "startDate":"10.03.2009",
+            "position":"valdes loceklis",
+            "holding":"1"
+          },
+          "2": {
+            "startDate":"03.11.2010",
+            "position":"valdes priek\u0161s\u0113d\u0113t\u0101js",
+            "holding":"1"
+          }
+        }
+      },
+      {
+        "id":"439463",
+        "regNo":"40103947718",
+        "title":"CREFO BIROJS, AS",
+
+        "address":"Skanstes 50, R\u012bga LV-1013",
+        "regDate":"19.11.2015",
+        "capCur":"EUR",
+        "capSum":"35000",
+        "capFullyPaid":"1",
+        "type":"1",
+        "roles": {
+          "0": {
+            "startDate":"19.11.2015",
+            "position":"valdes loceklis",
+            "holding":"1"
+          },
+          "2": {
+            "startDate":"03.11.2010",
+            "position":"valdes priek\u0161s\u0113d\u0113t\u0101js",
+            "holding":"1"
+          }
+        }
+      }
+    ]
+  },
+  "roles": [
+    {
+      "role": 0,
+      "title":"Dal\u012bbnieks"
+    },
+    {
+      "role": 1,
+      "title":"Valde"
+    },
+    {
+      "role": 2,
+      "title":"Padome"
+    }
+  ]
+}

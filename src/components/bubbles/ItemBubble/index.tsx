@@ -3,27 +3,27 @@ import {IItemBubble} from '../../../stores/FamilyTreeStore/interfaces';
 import Bubble from '../Bubble';
 import {II18nStore} from '../../../stores/I18nStore/interfaces';
 
-interface IProps extends
-  Pick<IItemBubble, 'legalForm' | 'address' | 'regDate' | 'capCur' | 'capSum' | 'capFullyPaid' | 'width' | 'height' | 'positionTop' | 'positionLeft' | 'verticalTailPosition' | 'horizontalTailPosition'>,
-  Pick<II18nStore, 't'> {
-
+interface IProps extends Pick<II18nStore, 't'> {
+  itemBubbleProps: Pick<IItemBubble, 'legalForm' | 'address' | 'regDate' | 'capCur' | 'capSum' | 'capFullyPaid' | 'width' | 'height' | 'positionTop' | 'positionLeft' | 'verticalTailPosition' | 'horizontalTailPosition'>;
 }
 
 const ItemBubble: React.FC<IProps> = ({
-                                        legalForm,
-                                        address,
-                                        regDate,
-                                        capCur,
-                                        capSum,
-                                        capFullyPaid,
-                                        width,
-                                        height,
-                                        positionTop,
-                                        positionLeft,
-                                        horizontalTailPosition,
-                                        verticalTailPosition,
-                                        t
-                                      }): JSX.Element => (
+  itemBubbleProps: {
+    legalForm,
+    address,
+    regDate,
+    capCur,
+    capSum,
+    capFullyPaid,
+    width,
+    height,
+    positionTop,
+    positionLeft,
+    horizontalTailPosition,
+    verticalTailPosition,
+  },
+  t
+}): JSX.Element => (
   <Bubble
     width={width}
     height={height}
@@ -41,4 +41,4 @@ const ItemBubble: React.FC<IProps> = ({
   </Bubble>
 );
 
-export default ItemBubble;
+export default React.memo<IProps>(ItemBubble);

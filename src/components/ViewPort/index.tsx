@@ -2,7 +2,7 @@ import * as React from 'react';
 import {IViewPortModel} from '../../stores/FamilyTreeStore/interfaces';
 
 interface IProps extends Pick<IViewPortModel, 'viewPortWidth' | 'viewPortHeight'>{
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const style: React.CSSProperties = {
@@ -13,17 +13,16 @@ const style: React.CSSProperties = {
   background: '#fff'
 };
 
-const ViewPort = React.forwardRef<HTMLDivElement | null, IProps>(
+const ViewPort = React.forwardRef<HTMLDivElement, IProps>(
   (
     {
       children,
       viewPortWidth,
       viewPortHeight
     }: IProps,
-    ref: React.Ref<HTMLDivElement | null>
+    ref: React.Ref<HTMLDivElement> | null
   ): JSX.Element => (
     <div
-      // @ts-ignore
       ref={ref}
       style={{
         ...style,

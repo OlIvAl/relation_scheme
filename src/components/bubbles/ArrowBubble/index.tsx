@@ -3,40 +3,6 @@ import {Currency, IArrowBubble} from '../../../stores/FamilyTreeStore/interfaces
 import Bubble from '../Bubble';
 import {II18nStore} from '../../../stores/I18nStore/interfaces';
 
-interface IProps extends
-  Pick<IArrowBubble, 'arrow' | 'partCur' | 'partSum' | 'percent' | 'startDate' | 'quitDate' | 'position' |  'width' | 'height' | 'positionTop' | 'positionLeft' | 'verticalTailPosition' | 'horizontalTailPosition'>,
-  Pick<II18nStore, 't'> {
-
-}
-
-const ArrowBubble: React.FC<IProps> = ({
-                                        arrow,
-                                        partCur,
-                                        partSum,
-                                        percent,
-                                        startDate,
-                                        quitDate,
-                                        position,
-                                        width,
-                                        height,
-                                        positionTop,
-                                        positionLeft,
-                                        horizontalTailPosition,
-                                        verticalTailPosition,
-                                        t
-                                      }): JSX.Element => (
-  <Bubble
-    width={width}
-    height={height}
-    positionTop={positionTop}
-    positionLeft={positionLeft}
-    horizontalTailPosition={horizontalTailPosition}
-    verticalTailPosition={verticalTailPosition}
-  >
-    {getString(arrow.roleId, partCur, partSum, percent, startDate, quitDate, position, t)}
-  </Bubble>
-);
-
 function getString(
   roleId: number,
   partCur: Currency,
@@ -64,4 +30,38 @@ function getString(
   return string;
 }
 
-export default ArrowBubble;
+interface IProps extends Pick<II18nStore, 't'> {
+  arrowBubbleProps: Pick<IArrowBubble, 'arrow' | 'partCur' | 'partSum' | 'percent' | 'startDate' | 'quitDate' | 'position' |  'width' | 'height' | 'positionTop' | 'positionLeft' | 'verticalTailPosition' | 'horizontalTailPosition'>;
+}
+
+const ArrowBubble: React.FC<IProps> = ({
+  arrowBubbleProps: {
+    arrow,
+    partCur,
+    partSum,
+    percent,
+    startDate,
+    quitDate,
+    position,
+    width,
+    height,
+    positionTop,
+    positionLeft,
+    horizontalTailPosition,
+    verticalTailPosition,
+  },
+  t
+}): JSX.Element => (
+  <Bubble
+    width={width}
+    height={height}
+    positionTop={positionTop}
+    positionLeft={positionLeft}
+    horizontalTailPosition={horizontalTailPosition}
+    verticalTailPosition={verticalTailPosition}
+  >
+    {getString(arrow.roleId, partCur, partSum, percent, startDate, quitDate, position, t)}
+  </Bubble>
+);
+
+export default React.memo<IProps>(ArrowBubble);

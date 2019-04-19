@@ -1,5 +1,5 @@
 import Bubble from '../Bubble';
-import {Currency, IArrowBubble, IItemArrow, ISvgRootModel} from '../../interfaces';
+import {Currency, IArrowBubble, IItemArrow} from '../../interfaces';
 import Dimensions from '../../Dimensions';
 import ElementHelpers from '../../ElementModel/Helpers';
 
