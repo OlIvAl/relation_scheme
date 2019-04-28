@@ -73,6 +73,7 @@ class ItemArrow extends Arrow implements IItemArrow {
   strong: boolean = false;
 
   @computed get hoverArrowExist(): boolean {
+    console.log('hoverArrowExist', !!this.item.itemsGroup.hoverArrow);
     return !!this.item.itemsGroup.hoverArrow;
   }
 
@@ -117,35 +118,49 @@ class ItemArrow extends Arrow implements IItemArrow {
   }
 
   @action.bound
-  unSetArrowBubble(): void {
+  clearBubbleTimeout(): void {
     if(this._bubbleTimeout) {
       clearTimeout(this._bubbleTimeout);
 
       this._bubbleTimeout = 0;
     }
+  }
+
+  @action.bound
+  unSetArrowBubble(): void {
+    this.clearBubbleTimeout();
 
     this.item.store.arrowBubble = null;
   }
 
   @action.bound
+  setHoverAction(): void {
+    this.item.itemsGroup.setHoverArrow(this);
+  }
+
+  @action.bound
   setHover(): void {
-    this._hoverTimeout = window.setTimeout((): void => {
+    /*this._hoverTimeout = window.setTimeout((): void => {
       runInAction(
         (): void => {
           this.item.itemsGroup.setHoverArrow(this);
         }
       );
-    }, Dimensions.TIMER);
-    //this.item.itemsGroup.setHoverArrow(this);
+    }, Dimensions.TIMER);*/
+    this.item.itemsGroup.setHoverArrow(this);
   }
 
   @action.bound
-  unSetHover(): void {
+  clearHoverTimeout(): void {
     if(this._hoverTimeout) {
       clearTimeout(this._hoverTimeout);
 
       this._hoverTimeout = 0;
     }
+  }
+  @action.bound
+  unSetHover(): void {
+    /**/
 
     this.item.itemsGroup.unSetHoverArrow();
   }

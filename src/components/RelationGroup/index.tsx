@@ -49,6 +49,7 @@ const RelationGroup: React.FC<IProps> = ({
               <OrdinaryItemArrow
                 itemArrowProps={arrow}
                 relation={arrow.roleItem.relation}
+                hoverArrowExist={!!itemsGroup.hoverArrow}
                 key={`${arrow.item.id}${arrow.roleId}`}
               />
             )),

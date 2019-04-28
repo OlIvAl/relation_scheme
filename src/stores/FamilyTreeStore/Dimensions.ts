@@ -25,9 +25,9 @@ class Dimensions {
   static BUBBLE_RIGHT_LEFT_PADDING: number = 35;
   static BUBBLE_TOP_BOTTOM_PADDING: number = 30;
 
-  static ARROW_STROKE_WIDTH: number = 2;
-  static ARROW_STRONG_STROKE_WIDTH: number = 4;
-  static ARROW_TRACK_STROKE_WIDTH: number = 4;
+  static ARROW_STROKE_WIDTH: number = 10;
+  static ARROW_STRONG_STROKE_WIDTH: number = Dimensions.ARROW_STROKE_WIDTH * 2;
+  static ARROW_TRACK_STROKE_WIDTH: number = Dimensions.ARROW_STROKE_WIDTH * 3;
 
   static ACTION_BUTTON_SIZE: number = 25;
 

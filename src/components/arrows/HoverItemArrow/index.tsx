@@ -15,11 +15,13 @@ const HoverItemArrow: React.FC<IProps> = ({
   const arrowColor: string = roles[itemArrowProps.roleId] || '#000';
 
   function onMouseEnter(e: React.MouseEvent): void {
+    console.log('HoverItemArrow onMouseEnter');
     itemArrowProps.setArrowBubble(e);
-    itemArrowProps.setHover();
   }
 
   function onMouseLeave(): void {
+    console.log('HoverItemArrow onMouseLeave');
+
     itemArrowProps.unSetArrowBubble();
     itemArrowProps.unSetHover();
   }

@@ -316,12 +316,14 @@ export interface IItemArrow extends IArrow {
   roleY: number;
 
   strong: boolean;
-  hoverArrowExist: boolean;
+  // hoverArrowExist: boolean;
 
   setArrowBubble: (e: React.MouseEvent) => void;
+  clearBubbleTimeout: () => void;
   unSetArrowBubble: () => void;
 
   setHover: () => void;
+  clearHoverTimeout: () => void;
   unSetHover: () => void;
 }
 

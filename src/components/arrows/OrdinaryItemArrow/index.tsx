@@ -29,23 +29,27 @@ const {roles}: ITheme = window['theme'];
 
 interface IProps extends Pick<IRoleModel, 'relation'> {
   itemArrowProps: IItemArrow;
+  hoverArrowExist: boolean;
 }
 
 const OrdinaryItemArrow: React.FC<IProps> = ({
   itemArrowProps,
-  relation
+  relation,
+  hoverArrowExist = false,
 }): JSX.Element => {
   const arrowColor: string = roles[itemArrowProps.roleId] || '#000';
-  const stroke: string = !itemArrowProps.hoverArrowExist
+  const stroke: string = !hoverArrowExist
     ? arrowColor
     : getColorWithOpacity(arrowColor, 0.5);
 
   function onMouseEnter(): void {
+    console.log('OrdinaryItemArrow onMouseEnter');
     itemArrowProps.setHover();
   }
 
   function onMouseLeave(): void {
-    itemArrowProps.unSetHover();
+    console.log('OrdinaryItemArrow onMouseLeave');
+    itemArrowProps.clearHoverTimeout();
   }
 
   return (

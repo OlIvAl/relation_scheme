@@ -2,7 +2,8 @@ import * as React from 'react';
 import {IArrow} from '../../../stores/FamilyTreeStore/interfaces';
 import Dimensions from '../../../stores/FamilyTreeStore/Dimensions';
 
-export interface IArrowProps extends Pick<IArrow, 'd'> {
+export interface IArrowProps {
+  d: string;
   stroke: string;
   strokeWidth?: number;
 }

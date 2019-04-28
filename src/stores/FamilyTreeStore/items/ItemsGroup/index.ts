@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx';
+import {action, observable, runInAction} from 'mobx';
 import {
   IFamilyTreeStore, IItemArrow, IItemModel,
   IItemsGroup,
@@ -61,11 +61,9 @@ class ItemsGroup implements IItemsGroup {
     }
 
     return this.itemsRoleGroups
-      .reduce<number>(
-        (sum: number, itemsRoleGroups: IItemsRoleGroup): number =>
-          (sum + itemsRoleGroups.height),
-        0
-      ) + this.distanceFromRolesGroup;
+      .reduce<number>((sum: number, itemsRoleGroups: IItemsRoleGroup): number =>
+      (sum + itemsRoleGroups.height), 0)
+      + this.distanceFromRolesGroup;
   }
 
   get items(): IItemModel[] {
@@ -155,13 +153,11 @@ class ItemsGroup implements IItemsGroup {
 
   @action.bound
   setHoverArrow(newHoverArrow: IItemArrow): void {
-    console.log('setHoverArrow');
     this.hoverArrow = newHoverArrow;
   }
 
   @action.bound
   unSetHoverArrow(): void {
-    console.log('unSetHoverArrow');
     this.hoverArrow = null;
   }
 }

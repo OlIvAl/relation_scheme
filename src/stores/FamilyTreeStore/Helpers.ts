@@ -12,14 +12,7 @@ export default class FamilyTreeHelpers {
         Object.keys(roles).map((role): number => Number(role))
       )
       // массивы roleId объединяются в единый массив
-      .reduce<number[]>((
-        accumulator: number[],
-        roles: number[]
-      ): number[] => ([
-        ...accumulator,
-        ...roles
-      ]), []
-      )
+      .reduce<number[]>((accumulator: number[], roles: number[]): number[] => ([...accumulator, ...roles]), [])
       // фильтруются уникальные id
       .filter((
         value: number,
