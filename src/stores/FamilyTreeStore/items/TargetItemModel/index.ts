@@ -133,7 +133,7 @@ class TargetItemModel extends ElementModel implements ITargetItemModel {
 
   @action.bound
   redirectToInfoPage(): void {
-    location.href = location.origin + this.url;
+    window.location.href = window.location.origin + this.url;
   }
 
   @action.bound

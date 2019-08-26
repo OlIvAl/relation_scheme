@@ -116,15 +116,15 @@ function useSvgRoot(
         rect.removeEventListener('mouseleave', onMouseUp , {capture: true});
       }
     }
-  }, []);
+  }, [ref]);
 
   React.useEffect((): void => {
     changeSvgPositionLeft(state.defPositionLeft);
-  }, [state.cursorPositionLeft]);
+  }, [changeSvgPositionLeft, state.cursorPositionLeft, state.defPositionLeft]);
 
   React.useEffect((): void => {
     changeSvgPositionTop(state.defPositionTop);
-  }, [state.cursorPositionTop]);
+  }, [changeSvgPositionTop, state.cursorPositionTop, state.defPositionTop]);
 
   return state.movable;
 }

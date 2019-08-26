@@ -55,7 +55,7 @@ function useViewPortFullscreen(
 
       setViewPortOffset(top, left);
     }
-  }, []);
+  }, [ref, setViewPortOffset]);
 
   React.useEffect((): () => void => {
     const viewPort: HTMLDivElement | null = ref.current;
@@ -83,7 +83,7 @@ function useViewPortFullscreen(
       document.removeEventListener('fullscreenchange', fullscreenChangeHandler);
       window.removeEventListener('resize', throttleResizeHandler);
     };
-  }, []);
+  }, [fullScreenChangeHandler, ref]);
 
   const [isFullscreen, setIsFullscreen] = React.useState<boolean>(false);
 

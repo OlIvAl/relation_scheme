@@ -31,7 +31,7 @@ export default class FamilyTreeHelpers {
       // уникальные id мапятся на полученные с сервера объекты ролей
       .map((roleId: number): IResponseRoleContent => (
         responseRoleContentArr.find(({role}: IResponseRoleContent): boolean =>
-          (Number(role) == Number(roleId))
+          (Number(role) === Number(roleId))
         ) as IResponseRoleContent
       ))
       .filter((item): boolean => !!item)

@@ -68,7 +68,7 @@ class ItemsLevelGroup implements IItemsLevelGroup {
       const roleObjects: IRoleModel[] = this.itemsRoleGroup.itemsGroup.rolesGroup.roles
         .filter(({roleId}: IRoleModel): boolean => (
           Object.keys(roles).some((key): boolean =>
-            (Number(key) == roleId))
+            (Number(key) === roleId))
         ));
 
       const itemBubbleInfo: IItemExtraInfo | null = (legalForm || address || regDate || capSum)
